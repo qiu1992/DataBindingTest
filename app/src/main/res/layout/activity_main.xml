@@ -3,6 +3,9 @@
 
     <data>
 
+        <import type="android.view.View"/>
+        <import type="qiu.databingding.com.Util"/>
+
         <variable
             name="user"
             type="qiu.databingding.com.bean.User"/>
@@ -24,25 +27,28 @@
         tools:context="qiu.databingding.com.MainActivity">
 
         <Button
-            android:text="改变值"
-            android:onClick="@{myListener.onTestBtnClick}"
+            android:text="改变值(点击、长按事件)"
+            android:onClick="@{myListener::onTestBtnClick}"
+            android:onLongClick="@{myListener::onTestBtnLongClick}"
             android:id="@+id/change_value_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:onClick="@{myListener.onNameClick}"
+            android:onClick="@{myListener::onNameClick}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.name}"/>
+            android:text='@{user.name}'/>
+
+        <TextView
+            android:onClick="@{(theView)->myListener.onParamClick (theView,user)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{user.age &lt; 20 ? View.GONE : View.VISIBLE}"
+            android:text='@{"age:" + String.valueOf(user.age)}'/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(user.age)}"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(user.height)}"/>
+            android:text='@{Util.getUpperString("hello world:" + user.height)}'/>
     </LinearLayout>
 </layout>
