@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import qiu.databingding.com.bean.Dog;
 import qiu.databingding.com.bean.User;
 import qiu.databingding.com.databinding.ActivityMainBinding;
 import qiu.databingding.com.listener.MyClickListener;
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity implements MyClickListener
     private User user;
     private ActivityMainBinding activityMainBinding;
 
+    private Dog dog;
+
+
     @Override
     protected void onCreate (Bundle savedInstanceState)
     {
@@ -23,6 +27,29 @@ public class MainActivity extends AppCompatActivity implements MyClickListener
         user = new User ("qiu",24.5f,173.1f);
         activityMainBinding.setUser (user);
         activityMainBinding.setMyListener (this);
+
+        dog = new Dog ("小黑",30.89f);
+        activityMainBinding.setDog (dog);
+
+        findViewById (R.id.databingding_btn).setOnClickListener (new View.OnClickListener ()
+        {
+            @Override
+            public void onClick (View v)
+            {
+                if (dog.getName ().equals ("小白"))
+                {
+                    dog.setName ("小黑");
+                }
+                else if (dog.getName ().equals ("小黑"))
+                {
+                    dog.setName ("小红");
+                }
+                else
+                {
+                    dog.setName ("小白");
+                }
+            }
+        });
     }
 
     @Override

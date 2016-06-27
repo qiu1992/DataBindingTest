@@ -4,6 +4,7 @@
     <data>
 
         <import type="android.view.View"/>
+
         <import type="qiu.databingding.com.Util"/>
 
         <variable
@@ -13,6 +14,10 @@
         <variable
             name="myListener"
             type="qiu.databingding.com.listener.MyClickListener"/>
+
+        <variable
+            name="dog"
+            type="qiu.databingding.com.bean.Dog"/>
     </data>
 
     <LinearLayout
@@ -27,28 +32,37 @@
         tools:context="qiu.databingding.com.MainActivity">
 
         <Button
-            android:text="改变值(点击、长按事件)"
-            android:onClick="@{myListener::onTestBtnClick}"
-            android:onLongClick="@{myListener::onTestBtnLongClick}"
             android:id="@+id/change_value_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:onClick="@{myListener::onTestBtnClick}"
+            android:onLongClick="@{myListener::onTestBtnLongClick}"
+            android:text="改变值(点击、长按事件)"/>
+
         <TextView
-            android:onClick="@{myListener::onNameClick}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{myListener::onNameClick}"
             android:text='@{user.name}'/>
 
         <TextView
-            android:onClick="@{(theView)->myListener.onParamClick (theView,user)}"
+            android:id="@+id/myAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{user.age &lt; 20 ? View.GONE : View.VISIBLE}"
-            android:text='@{"age:" + String.valueOf(user.age)}'/>
+            android:onClick="@{(theView)->myListener.onParamClick (theView,user)}"
+            android:text='@{"age:" + String.valueOf(user.age) + "/age",default=nihaoma}'
+            android:visibility="@{user.age &lt; 20 ? View.GONE : View.VISIBLE}"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text='@{Util.getUpperString("hello world:" + user.height)}'/>
+
+        <Button
+            android:id="@+id/databingding_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="John Doe"
+            android:text='@{dog.name + "/name"}'/>
     </LinearLayout>
 </layout>
