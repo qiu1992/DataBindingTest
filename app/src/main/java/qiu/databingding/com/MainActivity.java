@@ -3,18 +3,20 @@ package qiu.databingding.com;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import qiu.databingding.com.bean.Dog;
 import qiu.databingding.com.bean.User;
-import qiu.databingding.com.databinding.ActivityMainBinding;
+//import qiu.databingding.com.databinding.ActivityMainBinding;
+import qiu.databingding.com.databinding.TestClass;
 import qiu.databingding.com.listener.MyClickListener;
 
 public class MainActivity extends AppCompatActivity implements MyClickListener
 {
     private User user;
-    private ActivityMainBinding activityMainBinding;
+    private TestClass activityMainBinding;
 
     private Dog dog;
 
@@ -78,5 +80,14 @@ public class MainActivity extends AppCompatActivity implements MyClickListener
     public void onParamClick (View view, User user)
     {
         Toast.makeText (this, "onParamClick:" + user.getName () + user.getAge (), Toast.LENGTH_SHORT).show ();
+    }
+
+    @Override
+    public void onSaveClick (User user)
+    {
+        Toast.makeText (this, "onSaveClick:" + user.getName () + "/" + user.getAge (), Toast.LENGTH_SHORT).show ();
+        activityMainBinding.setNote ("this is my note");
+        Log.d ("meme",activityMainBinding.getNote () +"");
+        activityMainBinding.getRoot ();
     }
 }

@@ -29,4 +29,5 @@ public interface MyClickListener
     void onNameClick (View view);
     boolean onTestBtnLongClick (View view);
     void onParamClick (View view, User User);
+    void onSaveClick (User user);
 }
